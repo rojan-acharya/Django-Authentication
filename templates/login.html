@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        .custom-signup {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .custom-signup input {
+            padding: 4px;
+            margin-bottom: 10px;
+        }
+
+        .custom-signup button {
+            padding: 4px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .custom-signup a {
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="POST" class="custom-signup">
+        {% csrf_token %}
+
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% else %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        <a href="{% url 'signup-page' %}">Go Back</a>
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <input type="password" name="password" placeholder="Enter youe password" required>
+        <button type="submit">Login</button>
+    </form>
+</body>
+
+</html>
